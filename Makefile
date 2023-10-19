@@ -1,17 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/19 13:32:18 by mramiro-          #+#    #+#              #
-#    Updated: 2023/10/19 13:32:19 by mramiro-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = so_long
-SRC = main.c libft/ft_strlen.c libft/ft_strcnmp.c
+SRC = main.c check_map.c libft/ft_strlen.c libft/ft_strncmp.c
 OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
