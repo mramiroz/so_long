@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mrarmiro- <mramiro-@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 09:08:09 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/19 12:35:04 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:59:59 by mrarmiro-        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "so_long.h"
 
 int	main(int argc, char **argv)
@@ -25,5 +24,5 @@ int	main(int argc, char **argv)
 		perror("Error");
 		exit(1);
 	}
-	printf("OK");
+	valid_map(argv[1]);
 }

@@ -16,19 +16,16 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "../libft/libft.h"
 
 # ifndef BUFFER_SIZE
 
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 10000
 
 # endif
 
-int		ft_strlen(const char *str);
-void	*ft_calloc(size_t num, size_t size);
-char	*ft_strjoin(char *s1, char *s2);
 int		searchn(char *c);
 char	*get_next_line(int fd);
 char	*ft_join(char *s1, char *s2);
-char	*ft_strdup(char *s);
 
 #endif

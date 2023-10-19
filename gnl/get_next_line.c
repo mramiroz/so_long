@@ -113,16 +113,15 @@ char	*get_next_line(int fd)
 	temp = cutn(temp);
 	return (out);
 }
-/*
-int main()
-{
-	int fd = open("archivo.txt", O_RDONLY);
-	printf("R: %s", get_next_line(fd));
-	printf("R: %s", get_next_line(fd));
-	//printf("R: %s", get_next_line(fd));
-	//printf("R: %s", get_next_line(fd));
-	//printf("R: %s", get_next_line(fd));
 
-	system("leaks -q a.out");
-}
-*/
+// int main()
+// {
+// 	int fd = open("map.ber", O_RDONLY);
+// 	printf("R: %s", get_next_line(fd));
+// 	printf("R: %s", get_next_line(fd));
+// 	printf("R: %s", get_next_line(fd));
+// 	printf("R: %s", get_next_line(fd));
+// 	printf("R: %s", get_next_line(fd));
+
+// 	system("leaks -q a.out");
+// }
