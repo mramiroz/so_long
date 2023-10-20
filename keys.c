@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 09:08:09 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/20 11:33:03 by mramiro-         ###   ########.fr       */
+/*   Created: 2023/10/20 07:55:22 by mramiro-          #+#    #+#             */
+/*   Updated: 2023/10/20 10:06:46 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int select_key(int key)
 {
-	t_game game;
+	if (key == 53)
+		exit(0);
+	return (0);
+}
 
-	if (argc != 2)
+int	key_hook(int key, void *param)
+{
+	t_img *img;
+
+	img = (t_img *)param;
+	if (key == KEY_ESC)
 	{
-		perror("Error");
-		exit(1);
+		mlx_destroy_window(img->win.id, img->win.win);
+		exit(0);
 	}
-	init_game(&game, argv);
-	mlx_loop(game.win.id);
+	// else if(key == KEY_A)
+	// else if(key == KEY_D)	
+	// else if(key == KEY_S)
+	// else if(key == KEY_D)
+	mlx_put_image_to_window(img->win.id, img->win.win, img->img, 0, 0);
+	return (0);
 }

@@ -17,3 +17,26 @@ void ft_error(char *str)
     perror(str);
     exit(1);
 }
+
+t_img	create_img(t_win win, int w, int h)
+{
+	t_img	img;
+
+	img.win = win;
+	img.img = mlx_new_image(win.id, w, h);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp,
+			&img.line_length, &img.endian);
+	img.width = w;
+	img.height = h;
+	return (img);
+}
+
+int len_double(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
