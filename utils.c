@@ -31,6 +31,7 @@ t_img	create_img(t_win win, int w, int h)
 	return (img);
 }
 
+
 int len_double(char **str)
 {
 	int i;

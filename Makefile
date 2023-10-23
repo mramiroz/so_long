@@ -1,5 +1,5 @@
 NAME = so_long
-SRC = main.c check_map.c utils.c game.c keys.c
+SRC = main.c check_map.c utils.c game.c keys.c sprites.c player.c
 LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_split.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_bzero.c libft/ft_strlcpy.c
 GNL = gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
