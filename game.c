@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 09:54:56 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:40:48 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	check_sprite(t_game *game, int i, int j, int cell_size)
 		mlx_put_image_to_window(game->win.id, game->win.win,
 			game->sprites.floor.img, (j * cell_size), (i * cell_size));
 		if (game->map.map[i][j] == 'C')
+		{
 			mlx_put_image_to_window(game->win.id, game->win.win,
 				game->sprites.collectible.img, (j * cell_size),
 				(i * cell_size));
+			game->map.collectibles++;
+		}
 		else if (game->map.map[i][j] == 'P')
 		{
 			game->player.x = j;
 			game->player.y = i;
-			game->player.x_old = j;
-			game->player.y_old = i;
-			game->player.moves = 0;
 			mlx_put_image_to_window(game->win.id, game->win.win,
 				game->player.img.img, (j * cell_size), (i * cell_size));
 		}
@@ -49,6 +49,9 @@ void	draw_map(t_game *game)
 
 	cell_size = 30;
 	i = 0;
+	game->map.collectibles = 0;
+	game->player.collectibles = 0;
+	game->player.moves = 0;
 	while (i < game->map.rows)
 	{
 		j = 0;
@@ -56,6 +59,8 @@ void	draw_map(t_game *game)
 			(check_sprite(game, i, j, cell_size), j++);
 		i++;
 	}
+	game->player.x_old = game->player.x;
+	game->player.y_old = game->player.y;
 }
 
 void	draw_player(t_game *game)
@@ -63,11 +68,17 @@ void	draw_player(t_game *game)
 	int	cell_size;
 
 	cell_size = 30;
-	if (game->map.map[game->player.y][game->player.x] == 'E')
+	if (game->map.map[game->player.y][game->player.x] == 'E' &&
+		game->player.collectibles == game->map.collectibles)
 		exit_game(game);
 	mlx_put_image_to_window(game->win.id, game->win.win,
 		game->sprites.floor.img, (game->player.x_old * cell_size),
 		(game->player.y_old * cell_size));
+	if (game->map.map[game->player.y][game->player.x] == 'C')
+	{
+		game->map.map[game->player.y][game->player.x] = '0';
+		game->player.collectibles++;
+	}
 	mlx_put_image_to_window(game->win.id, game->win.win,
 		game->player.img.img, (game->player.x * cell_size),
 		(game->player.y * cell_size));

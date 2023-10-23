@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 09:08:09 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 09:50:58 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:07:28 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	init_game(&game, argv);
-	printf("X: %i\n", game.player.x);
-	printf("Y: %i\n", game.player.y);
 	mlx_key_hook(game.win.win, key_hook, &game);
+	printf("Moves: %d\n", game.player.moves);
 	mlx_hook(game.win.win, 17, 0, exit_game, &game);
 	mlx_loop(game.win.id);
 }

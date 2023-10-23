@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 07:55:22 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 08:40:35 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:30:48 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	key_hook(int key, void *param)
 	if (key == KEY_ESC || key == KEY_Q)
 		exit_game(game);
 	else if (key == KEY_W || key == KEY_UP)
-		move_up(game);
+		moves(game, key);
 	else if (key == KEY_A || key == KEY_LEFT)
-		move_left(game);
+		moves(game, key);
 	else if (key == KEY_S || key == KEY_DOWN)
-		move_down(game);
+		moves(game, key);
 	else if (key == KEY_D || key == KEY_RIGHT)
-		move_right(game);
+		moves(game, key);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 09:40:45 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:31:21 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,7 @@ t_img	create_img(t_win win, int w, int h);
 int		len_double(char **str);
 int		exit_game(void *game);
 void	load_sprites(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
-void	move_up(t_game *game);
-void	move_down(t_game *game);
+void	moves(t_game *game, int key);
 void	draw_map(t_game *game);
 void	draw_player(t_game *game);
 

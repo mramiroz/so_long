@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/21 12:00:00 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:06:20 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,4 @@ void	valid_map(t_game *game, const char *file)
 	len = ft_strlen(game->map.map[len_double(game->map.map) - 1]);
 	is_square(game->map.map, len + 1);
 	scan_map(game, len, start, end);
-	printf("OK");
 }
