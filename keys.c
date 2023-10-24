@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 07:55:22 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 10:30:48 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:08:39 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	exit_game(void *param)
 
 	game = (t_game *)param;
 	mlx_destroy_window(game->win.id, game->win.win);
+	free_map_char(game->map.map);
 	exit(0);
 }
 

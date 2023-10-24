@@ -18,6 +18,34 @@ void ft_error(char *str)
     exit(1);
 }
 
+
+
+void free_map_char(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void free_map_int(int **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 t_img	create_img(t_win win, int w, int h)
 {
 	t_img	img;

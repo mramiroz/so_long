@@ -6,13 +6,13 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:12:57 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 11:08:01 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:57:12 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_up(t_game *game)
+int	move_up(t_game *game)
 {
 	if (game->map.map[game->player.y - 1][game->player.x] != '1' &&
 		game->map.map[game->player.y - 1][game->player.x] != 'E')
@@ -20,9 +20,12 @@ void	move_up(t_game *game)
 	else if (game->map.map[game->player.y - 1][game->player.x] == 'E' &&
 		game->player.collectibles == game->map.collectibles)
 			game->player.y -= 1;
+	else
+		return (0);
+	return (1);
 }
 
-void	move_down(t_game *game)
+int	move_down(t_game *game)
 {
 	if (game->map.map[game->player.y + 1][game->player.x] != '1' &&
 		game->map.map[game->player.y + 1][game->player.x] != 'E')
@@ -30,9 +33,12 @@ void	move_down(t_game *game)
 	else if (game->map.map[game->player.y + 1][game->player.x] == 'E' &&
 		game->player.collectibles == game->map.collectibles)
 			game->player.y += 1;
+	else
+		return (0);
+	return (1);
 }
 
-void	move_left(t_game *game)
+int	move_left(t_game *game)
 {
 	if (game->map.map[game->player.y][game->player.x - 1] != '1' &&
 		game->map.map[game->player.y][game->player.x - 1] != 'E')
@@ -40,9 +46,12 @@ void	move_left(t_game *game)
 	else if (game->map.map[game->player.y][game->player.x - 1] == 'E' &&
 		game->player.collectibles == game->map.collectibles)
 				game->player.x -= 1;
+	else
+		return (0);
+	return (1);
 }
 
-void	move_right(t_game *game)
+int	move_right(t_game *game)
 {
 	if (game->map.map[game->player.y][game->player.x + 1] != '1' &&
 		game->map.map[game->player.y][game->player.x + 1] != 'E')
@@ -50,22 +59,30 @@ void	move_right(t_game *game)
 	else if (game->map.map[game->player.y][game->player.x + 1] == 'E' &&
 		game->player.collectibles == game->map.collectibles)
 				game->player.x += 1;
+	else
+		return (0);
+	return (1);
 }
 
 void	moves(t_game *game, int key)
 {
+	int	res;
+
+	res = 0;
 	game->player.x_old = game->player.x;
 	game->player.y_old = game->player.y;
 	if (key == KEY_W || key == KEY_UP)
-		move_up(game);
+		res = move_up(game);
 	else if (key == KEY_A || key == KEY_LEFT)
-		move_left(game);
+		res = move_left(game);
 	else if (key == KEY_S || key == KEY_DOWN)
-		move_down(game);
+		res = move_down(game);
 	else if (key == KEY_D || key == KEY_RIGHT)
-		move_right(game);
-	game->player.moves += 1;
-	draw_player(game);
-	printf("Moves: %d\n", game->player.moves);
+		res = move_right(game);
+	if (res == 1)
+	{
+		draw_player(game);
+		counter(game);
+	}
 }
 

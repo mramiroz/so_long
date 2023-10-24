@@ -6,11 +6,21 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 10:40:48 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:08:03 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	counter(t_game *game)
+{
+	game->player.moves++;
+	mlx_put_image_to_window(game->win.id, game->win.win,
+		game->sprites.wall.img, 0,
+		0);
+	mlx_string_put(game->win.id, game->win.win, 12, 15, 0x00FFFFFF,
+		ft_itoa(game->player.moves));
+}
 
 void	check_sprite(t_game *game, int i, int j, int cell_size)
 {
@@ -87,8 +97,6 @@ void	draw_player(t_game *game)
 void	init_game(t_game *game, char **argv)
 {
 	valid_map(game, argv[1]);
-	game->map.rows = len_double(game->map.map);
-	game->map.columns = ft_strlen(game->map.map[0]) - 1;
 	game->win.id = mlx_init();
 	game->win.width = (ft_strlen(game->map.map[0]) - 1) * 30;
 	game->win.height = len_double(game->map.map) * 30;

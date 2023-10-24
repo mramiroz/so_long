@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/23 10:31:21 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:33:56 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
+# include <limits.h>
 
 // CONSTANTES KEYS
 # define KEY_ESC 65307
@@ -31,6 +32,17 @@
 # define KEY_LEFT 65361
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
+
+typedef struct s_aux
+{
+	int start_x;
+	int start_y;
+	int end_x;
+	int end_y;
+	char **map;
+	int collectibles;
+	int get_colec;
+} t_aux;
 
 typedef struct s_map
 {
@@ -69,7 +81,11 @@ typedef struct s_sprites
 	t_img	collectible;
 	t_img	exit;
 }	t_sprites;
-
+typedef struct s_exit
+{
+	int x;
+	int y;
+}	t_exit;
 typedef struct s_player
 {
 	t_img	img;
@@ -87,6 +103,7 @@ typedef struct s_game
 	t_map		map;
 	t_sprites	sprites;
 	t_player	player;
+	t_exit		exit;
 }	t_game;
 
 
@@ -101,5 +118,17 @@ void	load_sprites(t_game *game);
 void	moves(t_game *game, int key);
 void	draw_map(t_game *game);
 void	draw_player(t_game *game);
+void	counter(t_game *game);
+int		set_player(t_game *game, int i, int j);
+int		set_exit(t_game *game, int i, int j);
+int		search_path(t_game game);
+int		move_up(t_game *game);
+int     move_down(t_game *game);
+int     move_left(t_game *game);
+int     move_right(t_game *game);
+void	free_map_char(char **map);
+void	free_map_int(int **map);
+int	valid_path(t_aux *game);
+t_aux copy_game(t_game *game);
 
 #endif
