@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 08:46:30 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:23:37 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@
 
 typedef struct s_aux
 {
-	int start_x;
-	int start_y;
-	int end_x;
-	int end_y;
-	char **map;
-	int collectibles;
-	int get_colec;
-} t_aux;
+	int		start_x;
+	int		start_y;
+	int		end_x;
+	int		end_y;
+	char	**map;
+	int		collectibles;
+	int		get_colec;
+}	t_aux;
 
 typedef struct s_map
 {
@@ -59,7 +59,6 @@ typedef struct s_win
 	int		width;
 	int		height;
 }	t_win;
-
 
 typedef struct s_img
 {
@@ -83,19 +82,19 @@ typedef struct s_sprites
 }	t_sprites;
 typedef struct s_exit
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_exit;
 typedef struct s_player
 {
 	t_img	img;
-	int	x;
-	int	y;
-	int	x_old;
-	int y_old;
-	int moves;
-	int collectibles;
-} t_player;
+	int		x;
+	int		y;
+	int		x_old;
+	int		y_old;
+	int		moves;
+	int		collectibles;
+}	t_player;
 
 typedef struct s_game
 {
@@ -105,7 +104,6 @@ typedef struct s_game
 	t_player	player;
 	t_exit		exit;
 }	t_game;
-
 
 void	valid_map(t_game *game, t_aux *aux, const char *file);
 void	ft_error(char *str);
@@ -122,13 +120,8 @@ void	counter(t_game *game);
 int		set_player(t_game *game, int i, int j);
 int		set_exit(t_game *game, int i, int j);
 int		search_path(t_game game);
-int		move_up(t_game *game);
-int     move_down(t_game *game);
-int     move_left(t_game *game);
-int     move_right(t_game *game);
 void	free_map_char(char **map);
-void	free_map_int(int **map);
-int	valid_path(t_aux *game);
-void copy_game(t_game *game, t_aux *aux);
+int		valid_path(t_aux *game);
+void	copy_game(t_game *game, t_aux *aux);
 
 #endif

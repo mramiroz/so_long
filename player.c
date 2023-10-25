@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:12:57 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/24 08:57:12 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:18:37 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ void	moves(t_game *game, int key)
 		counter(game);
 	}
 }
-

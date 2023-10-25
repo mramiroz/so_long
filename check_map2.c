@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 09:31:56 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:18:03 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ int	set_exit(t_game *game, int i, int j)
 	return (1);
 }
 
-void copy_game(t_game *game, t_aux *aux)
+int	set_player(t_game *game, int i, int j)
+{
+	game->player.x = j;
+	game->player.y = i;
+	return (1);
+}
+
+void	copy_game(t_game *game, t_aux *aux)
 {
 	int	i;
 
@@ -41,8 +48,6 @@ void copy_game(t_game *game, t_aux *aux)
 	aux->collectibles = game->map.collectibles;
 	aux->get_colec = 0;
 }
-
-
 
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
@@ -71,7 +76,6 @@ int	valid_path_helper(t_aux *aux, int x, int y)
 		return (1);
 	return (0);
 }	
-
 
 int	valid_path(t_aux *game)
 {

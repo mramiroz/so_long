@@ -6,18 +6,11 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 09:14:19 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:23:10 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	set_player(t_game *game, int i, int j)
-{
-	game->player.x = j;
-	game->player.y = i;
-	return (1);
-}
 
 char	*create_map_line(int fd)
 {
@@ -71,14 +64,14 @@ void	scan_map(t_game *game, int len, int start, int end)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < len_double(game->map.map))
+	i = -1;
+	while (++i < len_double(game->map.map))
 	{
-		j = 0;
-		while (j < len)
+		j = -1;
+		while (++j < len)
 		{
-			if (game->map.map[i][j] != '1' && (j == 0 || j == len - 1 ||
-				i == 0 || i == len_double(game->map.map) - 1))
+			if (game->map.map[i][j] != '1' && (j == 0 || j == len - 1
+			|| i == 0 || i == len_double(game->map.map) - 1))
 				ft_error("No esta cerrado por muros");
 			else if (game->map.map[i][j] == 'P')
 				start += set_player(game, i, j);
@@ -88,9 +81,7 @@ void	scan_map(t_game *game, int len, int start, int end)
 				game->map.collectibles++;
 			if (end > 1 || start > 1)
 				ft_error("Hay mas de un inicio o final");
-			j++;
 		}
-		i++;
 	}
 	if (end == 0 || start == 0)
 		ft_error("No hay inicio o final");

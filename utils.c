@@ -12,17 +12,15 @@
 
 #include "so_long.h"
 
-void ft_error(char *str)
+void	ft_error(char *str)
 {
-    perror(str);
-    exit(1);
+	perror(str);
+	exit(1);
 }
 
-
-
-void free_map_char(char **map)
+void	free_map_char(char **map)
 {
-	int i;
+	int	i;
 
 	if (!map)
 		return ;
@@ -48,10 +46,9 @@ t_img	create_img(t_win win, int w, int h)
 	return (img);
 }
 
-
-int len_double(char **str)
+int	len_double(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
