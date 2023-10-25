@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/24 14:08:31 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 09:14:19 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,27 @@ int	set_player(t_game *game, int i, int j)
 	game->player.x = j;
 	game->player.y = i;
 	return (1);
+}
+
+char	*create_map_line(int fd)
+{
+	char	*line;
+	char	*temp;
+	char	buffer[2];
+
+	line = malloc(sizeof(char) * 1);
+	if (!line)
+		ft_error("Error al crear la linea");
+	line[0] = '\0';
+	while (read(fd, buffer, 1) > 0)
+	{
+		buffer[1] = '\0';
+		temp = ft_strjoin(line, buffer);
+		free(line);
+		line = temp;
+	}
+	close(fd);
+	return (line);
 }
 
 void	is_ber(const char *file)
@@ -75,13 +96,13 @@ void	scan_map(t_game *game, int len, int start, int end)
 		ft_error("No hay inicio o final");
 }
 
-void	valid_map(t_game *game, const char *file)
+void	valid_map(t_game *game, t_aux *aux, const char *file)
 {
 	int		fd;
 	int		len;
 	int		start;
 	int		end;
-	t_aux	aux;
+	char	*line;
 
 	start = 0;
 	end = 0;
@@ -89,13 +110,15 @@ void	valid_map(t_game *game, const char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error al abrir el archivo");
-	game->map.map = ft_split(get_next_line(fd), '\n');
+	line = create_map_line(fd);
+	game->map.map = ft_split(line, '\n');
+	free(line);
 	len = ft_strlen(game->map.map[len_double(game->map.map) - 1]);
 	is_square(game->map.map, len + 1);
 	game->map.rows = len_double(game->map.map);
 	game->map.columns = ft_strlen(game->map.map[0]) - 1;
 	scan_map(game, len, start, end);
-	aux = copy_game(game);
-	if (!valid_path(&aux))
+	copy_game(game, aux);
+	if (!valid_path(aux))
 		ft_error("No hay camino");
 }

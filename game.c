@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/24 10:08:03 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 07:58:04 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	draw_player(t_game *game)
 		(game->player.y * cell_size));
 }
 
-void	init_game(t_game *game, char **argv)
+void	init_game(t_game *game, t_aux *aux, char **argv)
 {
-	valid_map(game, argv[1]);
+	valid_map(game, aux, argv[1]);
 	game->win.id = mlx_init();
 	game->win.width = (ft_strlen(game->map.map[0]) - 1) * 30;
 	game->win.height = len_double(game->map.map) * 30;

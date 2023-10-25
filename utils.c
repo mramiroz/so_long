@@ -24,19 +24,8 @@ void free_map_char(char **map)
 {
 	int i;
 
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
-void free_map_int(int **map)
-{
-	int i;
-
+	if (!map)
+		return ;
 	i = 0;
 	while (map[i])
 	{

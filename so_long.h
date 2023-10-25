@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/24 13:33:56 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/10/25 08:46:30 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "gnl/get_next_line.h"
 # include "libft/libft.h"
 # include <limits.h>
+# include <unistd.h>
 
 // CONSTANTES KEYS
 # define KEY_ESC 65307
@@ -107,9 +107,9 @@ typedef struct s_game
 }	t_game;
 
 
-void	valid_map(t_game *game, const char *file);
+void	valid_map(t_game *game, t_aux *aux, const char *file);
 void	ft_error(char *str);
-void	init_game(t_game *game, char **argv);
+void	init_game(t_game *game, t_aux *aux, char **argv);
 int		key_hook(int key, void *param);
 t_img	create_img(t_win win, int w, int h);
 int		len_double(char **str);
@@ -129,6 +129,6 @@ int     move_right(t_game *game);
 void	free_map_char(char **map);
 void	free_map_int(int **map);
 int	valid_path(t_aux *game);
-t_aux copy_game(t_game *game);
+void copy_game(t_game *game, t_aux *aux);
 
 #endif
