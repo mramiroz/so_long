@@ -1,7 +1,7 @@
 NAME = so_long
-SRC = main.c check_map.c utils.c game.c keys.c sprites.c player.c check_map2.c
+SRC = main.c check_map.c utils.c game.c keys.c sprites.c player.c check_map2.c error.c
 LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_split.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_bzero.c libft/ft_strlcpy.c \
-		libft/ft_itoa.c
+		libft/ft_itoa.c libft/ft_memset.c
 OBJ = $(SRC:.c=.o)
 OBJ += $(LIBFT:.c=.o)
 CC = gcc

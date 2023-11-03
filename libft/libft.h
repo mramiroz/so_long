@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:59:59 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 13:30:16 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/03 08:32:07 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_itoa(int value);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
+void	*ft_memset(void *ptr, int x, size_t n);
 
 #endif

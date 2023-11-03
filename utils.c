@@ -12,12 +12,6 @@
 
 #include "so_long.h"
 
-void	ft_error(char *str)
-{
-	perror(str);
-	exit(1);
-}
-
 void	free_map_char(char **map)
 {
 	int	i;
@@ -54,4 +48,23 @@ int	len_double(char **str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void zero_map(t_aux *aux, char visited[aux->rows][aux->colums])
+{
+	int i;
+	int j;
+
+	i = 0;
+
+	while (i < aux->rows)
+	{
+		j = 0;
+		while (j < aux->colums)
+		{
+			visited[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
 }

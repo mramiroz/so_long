@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 13:23:37 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:16:56 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_aux
 	char	**map;
 	int		collectibles;
 	int		get_colec;
+	int		rows;
+	int		colums;
 }	t_aux;
 
 typedef struct s_map
@@ -107,6 +109,7 @@ typedef struct s_game
 
 void	valid_map(t_game *game, t_aux *aux, const char *file);
 void	ft_error(char *str);
+void	ft_error_map(char *str, char **map);
 void	init_game(t_game *game, t_aux *aux, char **argv);
 int		key_hook(int key, void *param);
 t_img	create_img(t_win win, int w, int h);
@@ -123,5 +126,7 @@ int		search_path(t_game game);
 void	free_map_char(char **map);
 int		valid_path(t_aux *game);
 void	copy_game(t_game *game, t_aux *aux);
+//int		canReachEnd(t_aux *aux);
+//void 	zero_map(t_aux *aux, char visited[aux->rows][aux->colums]);
 
 #endif

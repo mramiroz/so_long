@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 13:23:10 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:26:17 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	is_square(char **lines, int len)
 	while (i < len_double(lines) - 1)
 	{
 		if (ft_strlen(lines[i]) != len)
-			ft_error("No es un rectangulo");
+			ft_error_map("No es un rectangulo", lines);
 		i++;
 	}
 }
@@ -72,7 +72,7 @@ void	scan_map(t_game *game, int len, int start, int end)
 		{
 			if (game->map.map[i][j] != '1' && (j == 0 || j == len - 1
 			|| i == 0 || i == len_double(game->map.map) - 1))
-				ft_error("No esta cerrado por muros");
+				ft_error_map("No esta cerrado por muros", game->map.map);
 			else if (game->map.map[i][j] == 'P')
 				start += set_player(game, i, j);
 			else if (game->map.map[i][j] == 'E')
@@ -80,11 +80,11 @@ void	scan_map(t_game *game, int len, int start, int end)
 			else if (game->map.map[i][j] == 'C')
 				game->map.collectibles++;
 			if (end > 1 || start > 1)
-				ft_error("Hay mas de un inicio o final");
+				ft_error_map("Hay mas de un inicio o final", game->map.map);
 		}
 	}
 	if (end == 0 || start == 0)
-		ft_error("No hay inicio o final");
+		ft_error_map("No hay inicio o final", game->map.map);
 }
 
 void	valid_map(t_game *game, t_aux *aux, const char *file)
@@ -108,8 +108,9 @@ void	valid_map(t_game *game, t_aux *aux, const char *file)
 	is_square(game->map.map, len + 1);
 	game->map.rows = len_double(game->map.map);
 	game->map.columns = ft_strlen(game->map.map[0]) - 1;
-	scan_map(game, len, start, end);
-	copy_game(game, aux);
+	(scan_map(game, len, start, end), copy_game(game, aux));
 	if (!valid_path(aux))
-		ft_error("No hay camino");
+	{
+		ft_error_map("No hay camino", game->map.map);
+	}
 }

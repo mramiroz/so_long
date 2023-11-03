@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 09:08:09 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/03 09:53:12 by mramiro-         ###   ########.fr       */
+/*   Created: 2022/09/14 13:09:47 by mramiro-          #+#    #+#             */
+/*   Updated: 2023/11/03 08:31:32 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *ptr, int x, size_t n)
 {
-	t_game	game;
-	t_aux	aux;
+	size_t			i;
+	unsigned char	*s;
 
-	if (argc != 2)
-	{
-		perror("Error");
-		exit(1);
-	}
-	init_game(&game, &aux, argv);
-	mlx_key_hook(game.win.win, key_hook, &game);
-	mlx_hook(game.win.win, 17, 0, exit_game, &game);
-	mlx_loop(game.win.id);
-	free_map_char(game.map.map);
-	free_map_char(aux.map);
+	i = 0;
+	s = (unsigned char *)ptr;
+	while (i < n)
+		((unsigned char *)s)[i++] = (unsigned char)x;
+	return (ptr);
 }

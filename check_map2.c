@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 13:18:03 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:48:26 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	copy_game(t_game *game, t_aux *aux)
 	aux->end_y = game->exit.y;
 	aux->collectibles = game->map.collectibles;
 	aux->get_colec = 0;
+	aux->rows = game->map.rows;
+	aux->colums = game->map.columns;
 }
 
 int	valid_path_helper(t_aux *aux, int x, int y)
@@ -88,3 +90,4 @@ int	valid_path(t_aux *game)
 		return (0);
 	return (valid_path_helper(game, x, y));
 }
+
