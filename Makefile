@@ -6,15 +6,15 @@ OBJ = $(SRC:.c=.o)
 OBJ += $(LIBFT:.c=.o)
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror
-LDFLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz
+LDFLAGS = -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -I./minilibx-linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 07:58:04 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:44:03 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	counter(t_game *game)
 {
+	char *num;
+
 	game->player.moves++;
 	mlx_put_image_to_window(game->win.id, game->win.win,
 		game->sprites.wall.img, 0,
 		0);
+	num = ft_itoa(game->player.moves);
 	mlx_string_put(game->win.id, game->win.win, 12, 15, 0x00FFFFFF,
-		ft_itoa(game->player.moves));
+		num);
+	free(num);
 }
 
 void	check_sprite(t_game *game, int i, int j, int cell_size)
@@ -36,7 +40,6 @@ void	check_sprite(t_game *game, int i, int j, int cell_size)
 			mlx_put_image_to_window(game->win.id, game->win.win,
 				game->sprites.collectible.img, (j * cell_size),
 				(i * cell_size));
-			game->map.collectibles++;
 		}
 		else if (game->map.map[i][j] == 'P')
 		{
@@ -59,7 +62,6 @@ void	draw_map(t_game *game)
 
 	cell_size = 30;
 	i = 0;
-	game->map.collectibles = 0;
 	game->player.collectibles = 0;
 	game->player.moves = 0;
 	while (i < game->map.rows)
@@ -96,12 +98,15 @@ void	draw_player(t_game *game)
 
 void	init_game(t_game *game, t_aux *aux, char **argv)
 {
-	valid_map(game, aux, argv[1]);
+	valid_map(game, argv[1]);
 	game->win.id = mlx_init();
 	game->win.width = (ft_strlen(game->map.map[0]) - 1) * 30;
 	game->win.height = len_double(game->map.map) * 30;
 	game->win.win = mlx_new_window(game->win.id, game->win.width,
 			game->win.height, "so_long");
+	copy_game(game, aux);
+	if (!valid_path(aux))
+		ft_error_map("No hay camino", game->map.map);
 	load_sprites(game);
 	draw_map(game);
 }

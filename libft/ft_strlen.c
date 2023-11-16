@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrarmiro- <mramiro-@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:10:28 by mramiro-          #+#    #+#             */
-/*   Updated: 2022/10/04 17:14:34 by mrarmiro-        ###   ########.fr       */
+/*   Updated: 2023/11/16 15:45:00 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,3 @@ int	ft_strlen(const char *str)
 	}
 	return (i);
 }
-/*
-int main()
-{
-	char str[] = "Holaaslfdasdf";
-	printf("%d", ft_strlen(str));
-}
-*/

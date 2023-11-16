@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/16 14:34:18 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:18:22 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct s_game
 	t_exit		exit;
 }	t_game;
 
-void	valid_map(t_game *game, t_aux *aux, const char *file);
+void	valid_map(t_game *game, const char *file);
 void	ft_error(char *str);
 void	ft_error_map(char *str, char **map);
 void	init_game(t_game *game, t_aux *aux, char **argv);

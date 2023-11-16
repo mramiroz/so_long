@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 16:20:59 by mramiro-          #+#    #+#             */
-/*   Updated: 2022/10/25 11:30:42 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:44:54 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (d);
 }
-
-/*
-int main()
-{
-	char **p;
-	p = ft_split("  HOLA PACO    MARIA ", ' ');
-	printf("%s\n", p[0]);
-	printf("%s\n", p[1]);
-	printf("%s\n", p[2]);
-	printf("%s\n", p[3]);
-	return 0;
-}
-*/
