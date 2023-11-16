@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/03 10:26:17 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:33:04 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,5 @@ void	valid_map(t_game *game, t_aux *aux, const char *file)
 	game->map.columns = ft_strlen(game->map.map[0]) - 1;
 	(scan_map(game, len, start, end), copy_game(game, aux));
 	if (!valid_path(aux))
-	{
 		ft_error_map("No hay camino", game->map.map);
-	}
 }

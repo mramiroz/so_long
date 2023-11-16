@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/03 10:16:56 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:34:18 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,42 @@
 # include <limits.h>
 # include <unistd.h>
 
-// CONSTANTES KEYS
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_Q 113
-# define KEY_UP 65362
-# define KEY_LEFT 65361
-# define KEY_DOWN 65364
-# define KEY_RIGHT 65363
+# ifdef __linux__
+#  include "../minilibx_linux/mlx.h"
+#  define SCREENWIDTH 1024
+#  define SCREENHEIGHT 768
+enum e_keycode
+{
+    KEY_W = 119,
+    KEY_A = 97,
+    KEY_S = 115,
+    KEY_D = 100,
+    KEY_UP = 65362,
+    KEY_LEFT = 65361,
+    KEY_DOWN = 65364,
+    KEY_RIGHT = 65363,
+    KEY_ESC = 65307,
+	KEY_Q = 24
+};
+# elif defined(__APPLE__)
+#  define SCREENWIDTH 1024
+#  define SCREENHEIGHT 768
+//#  define SCREENWIDTH 3072
+//#  define SCREENHEIGHT 1800
+enum e_keycode
+{
+    KEY_W = 13,
+    KEY_A = 0,
+    KEY_S = 1,
+    KEY_D = 2,
+    KEY_UP = 126,
+    KEY_LEFT = 123,
+    KEY_DOWN = 125,
+    KEY_RIGHT = 124,
+    KEY_ESC = 53,
+	KEY_Q = 12
+};
+# endif
 
 typedef struct s_aux
 {
