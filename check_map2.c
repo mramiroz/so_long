@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/16 15:30:53 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/24 08:19:08 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	copy_game(t_game *game, t_aux *aux)
 	i = 0;
 	aux->map = malloc(sizeof(char *) * game->map.rows);
 	if (aux->map == NULL)
-		ft_error("Error de asignación de memoria");
+		ft_error("Allocate error");
 	while (i < game->map.rows)
 	{
 		aux->map[i] = ft_strdup(game->map.map[i]);
 		if (aux->map[i] == NULL)
-			ft_error("Error de asignación de memoria");
+			ft_error("Allocate error");
 		i++;
 	}
 	aux->start_x = game->player.x;
@@ -77,7 +77,7 @@ int	valid_path_helper(t_aux *aux, int x, int y)
 		&& (x == aux->end_x && y == aux->end_y))
 		return (1);
 	return (0);
-}	
+}
 
 int	valid_path(t_aux *game)
 {
@@ -90,4 +90,3 @@ int	valid_path(t_aux *game)
 		return (0);
 	return (valid_path_helper(game, x, y));
 }
-

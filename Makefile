@@ -11,7 +11,7 @@ LDFLAGS = -lmlx -lXext -lX11 -lm -lz
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

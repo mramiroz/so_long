@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/16 15:44:03 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/24 08:19:38 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	counter(t_game *game)
 {
-	char *num;
+	char	*num;
 
 	game->player.moves++;
 	mlx_put_image_to_window(game->win.id, game->win.win,
 		game->sprites.wall.img, 0,
 		0);
 	num = ft_itoa(game->player.moves);
-	mlx_string_put(game->win.id, game->win.win, 12, 15, 0x00FFFFFF,
+	mlx_string_put(game->win.id, game->win.win, 6, 6, 0x00FFFFFF,
 		num);
 	free(num);
 }
@@ -106,7 +106,7 @@ void	init_game(t_game *game, t_aux *aux, char **argv)
 			game->win.height, "so_long");
 	copy_game(game, aux);
 	if (!valid_path(aux))
-		ft_error_map("No hay camino", game->map.map);
+		ft_error_map("Error path not found", game->map.map);
 	load_sprites(game);
 	draw_map(game);
 }

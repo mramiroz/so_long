@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/16 15:26:19 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/24 08:18:35 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*create_map_line(int fd)
 
 	line = malloc(sizeof(char) * 1);
 	if (!line)
-		ft_error("Error al crear la linea");
+		ft_error("Line error");
 	line[0] = '\0';
 	while (read(fd, buffer, 1) > 0)
 	{
@@ -43,7 +43,7 @@ void	is_ber(const char *file)
 	len = ft_strlen(file);
 	len_ber = ft_strlen(extension);
 	if (ft_strncmp(file + len - len_ber, extension, len_ber) != 0)
-		ft_error("No es un archivo .ber");
+		ft_error("It isn't a .ber file");
 }
 
 void	is_square(char **lines, int len)
@@ -54,7 +54,7 @@ void	is_square(char **lines, int len)
 	while (i < len_double(lines) - 1)
 	{
 		if (ft_strlen(lines[i]) != len)
-			ft_error_map("No es un rectangulo", lines);
+			ft_error_map("It isn't a rectangle", lines);
 		i++;
 	}
 }
@@ -72,7 +72,7 @@ void	scan_map(t_game *game, int len, int start, int end)
 		{
 			if (game->map.map[i][j] != '1' && (j == 0 || j == len - 1
 			|| i == 0 || i == len_double(game->map.map) - 1))
-				ft_error_map("No esta cerrado por muros", game->map.map);
+				ft_error_map("It isn't surrounded by walls", game->map.map);
 			else if (game->map.map[i][j] == 'P')
 				start += set_player(game, i, j);
 			else if (game->map.map[i][j] == 'E')
@@ -80,11 +80,11 @@ void	scan_map(t_game *game, int len, int start, int end)
 			else if (game->map.map[i][j] == 'C')
 				game->map.collectibles++;
 			if (end > 1 || start > 1)
-				ft_error_map("Hay mas de un inicio o final", game->map.map);
+				ft_error_map("There are to much start or end", game->map.map);
 		}
 	}
 	if (end == 0 || start == 0)
-		ft_error_map("No hay inicio o final", game->map.map);
+		ft_error_map("There isn't start or end", game->map.map);
 }
 
 void	valid_map(t_game *game, const char *file)
@@ -100,12 +100,12 @@ void	valid_map(t_game *game, const char *file)
 	is_ber(file);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error("Error al abrir el archivo");
+		ft_error("Open file error");
 	line = create_map_line(fd);
 	game->map.map = ft_split(line, '\n');
 	free(line);
 	len = ft_strlen(game->map.map[len_double(game->map.map) - 1]);
-	is_square(game->map.map, len + 1);
+	is_square(game->map.map, len);
 	game->map.rows = len_double(game->map.map);
 	game->map.columns = ft_strlen(game->map.map[0]) - 1;
 	game->map.collectibles = 0;

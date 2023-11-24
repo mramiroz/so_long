@@ -6,25 +6,21 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 09:08:09 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/16 15:35:30 by mramiro-         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:22:29 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void leaks(void)
-{
-	system("leaks -q so_long");
-}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
 	t_aux	aux;
 
-	atexit(leaks);
 	if (argc != 2)
 	{
 		perror("Error");
-		return(1);
+		return (1);
 	}
 	init_game(&game, &aux, argv);
 	mlx_key_hook(game.win.win, key_hook, &game);
