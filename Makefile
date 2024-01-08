@@ -5,7 +5,7 @@ LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_split.c libft/ft_calloc.c 
 OBJ = $(SRC:.c=.o)
 OBJ += $(LIBFT:.c=.o)
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
