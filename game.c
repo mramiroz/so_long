@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/24 08:19:38 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/02/02 11:13:23 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_map(t_game *game)
 	while (i < game->map.rows)
 	{
 		j = 0;
-		while (j < game->map.columns)
+		while (j <= game->map.columns)
 			(check_sprite(game, i, j, cell_size), j++);
 		i++;
 	}
@@ -100,7 +100,7 @@ void	init_game(t_game *game, t_aux *aux, char **argv)
 {
 	valid_map(game, argv[1]);
 	game->win.id = mlx_init();
-	game->win.width = (ft_strlen(game->map.map[0]) - 1) * 30;
+	game->win.width = (ft_strlen(game->map.map[0])) * 30;
 	game->win.height = len_double(game->map.map) * 30;
 	game->win.win = mlx_new_window(game->win.id, game->win.width,
 			game->win.height, "so_long");
