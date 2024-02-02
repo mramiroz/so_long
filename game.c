@@ -99,14 +99,14 @@ void	draw_player(t_game *game)
 void	init_game(t_game *game, t_aux *aux, char **argv)
 {
 	valid_map(game, argv[1]);
+	copy_game(game, aux);
+	if (!valid_path(aux))
+		ft_error_map("Error path not found", game->map.map);
 	game->win.id = mlx_init();
 	game->win.width = (ft_strlen(game->map.map[0])) * 30;
 	game->win.height = len_double(game->map.map) * 30;
 	game->win.win = mlx_new_window(game->win.id, game->win.width,
 			game->win.height, "so_long");
-	copy_game(game, aux);
-	if (!valid_path(aux))
-		ft_error_map("Error path not found", game->map.map);
 	load_sprites(game);
 	draw_map(game);
 }

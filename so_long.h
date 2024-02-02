@@ -22,7 +22,7 @@
 # include <unistd.h>
 
 # ifdef __linux__
-#  include "../minilibx_linux/mlx.h"
+#  include "minilibx-linux/mlx.h"
 #  define SCREENWIDTH 1024
 #  define SCREENHEIGHT 768
 

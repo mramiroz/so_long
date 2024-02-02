@@ -53,29 +53,19 @@ void	copy_game(t_game *game, t_aux *aux)
 
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
-	while (!(x == aux->end_x && y == aux->end_y))
-	{
-		if (aux->map[y][x] == '1')
-			return (0);
-		else if (aux->map[y][x] == 'C')
-		{
-			aux->get_colec++;
-			aux->map[y][x] = '0';
-		}
-		aux->map[y][x] = '1';
-		if (valid_path_helper(aux, x, y - 1))
-			return (1);
-		if (valid_path_helper(aux, x, y + 1))
-			return (1);
-		if (valid_path_helper(aux, x - 1, y))
-			return (1);
-		if (valid_path_helper(aux, x + 1, y))
-			return (1);
-	}
-	aux->map[y][x] = '1';
-	if (aux->get_colec == aux->collectibles
-		&& (x == aux->end_x && y == aux->end_y))
+	if(x == aux->end_x && y == aux->end_y && aux->get_colec == aux->collectibles)
 		return (1);
+	if (aux->map[y][x] == '1' || aux->map[y][x] == '2')
+		return (0);
+	if (aux->map[y][x] == 'C')
+		aux->get_colec++;
+	aux->map[y][x] = '2';
+	if (valid_path_helper(aux, x, y - 1) ||
+        valid_path_helper(aux, x, y + 1) ||
+        valid_path_helper(aux, x - 1, y) ||
+        valid_path_helper(aux, x + 1, y))
+        return (1);
+	aux->map[y][x] = '0';
 	return (0);
 }
 
