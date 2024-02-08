@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/24 08:19:08 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:19:26 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,19 @@ void	copy_game(t_game *game, t_aux *aux)
 
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
-	if(x == aux->end_x && y == aux->end_y && aux->get_colec == aux->collectibles)
+	if (x == aux->end_x && y == aux->end_y
+		&& aux->get_colec == aux->collectibles)
 		return (1);
 	if (aux->map[y][x] == '1' || aux->map[y][x] == '2')
 		return (0);
 	if (aux->map[y][x] == 'C')
 		aux->get_colec++;
 	aux->map[y][x] = '2';
-	if (valid_path_helper(aux, x, y - 1) ||
-        valid_path_helper(aux, x, y + 1) ||
-        valid_path_helper(aux, x - 1, y) ||
-        valid_path_helper(aux, x + 1, y))
-        return (1);
+	if (valid_path_helper(aux, x, y - 1)
+		|| valid_path_helper(aux, x, y + 1)
+		|| valid_path_helper(aux, x - 1, y)
+		|| valid_path_helper(aux, x + 1, y))
+		return (1);
 	aux->map[y][x] = '0';
 	return (0);
 }
