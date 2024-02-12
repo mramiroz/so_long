@@ -70,6 +70,7 @@ typedef struct s_aux
 	int		get_colec;
 	int		rows;
 	int		colums;
+	int		visited;
 }	t_aux;
 
 typedef struct s_map

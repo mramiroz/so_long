@@ -64,24 +64,22 @@ int	valid_path_helper(t_aux *aux, int x, int y)
 			valid_path_helper(aux, x, y - 1));
 }
 
-int	valid_coins(t_aux *aux, int x, int y, int **visited)
+int	valid_coins(t_aux *aux, int x, int y)
 {
-	if (aux->map[y][x] == '1')
+	if (aux->map[y][x] == '1' || aux->visited > 100)
 		return (0);
 	if (aux->collectibles == aux->get_colec)
 		return (1);
 	if (aux->map[y][x] == 'C')
-	{
 		aux->get_colec++;
-		aux->map[y][x] = '0';
-	}
 	aux->map[y][x] = '1';
-
-	if (valid_coins(aux, x + 1, y, visited) ||
-		valid_coins(aux, x - 1, y, visited) ||
-		valid_coins(aux, x, y + 1, visited) ||
-		valid_coins(aux, x, y - 1, visited))
+	if (valid_coins(aux, x + 1, y) ||
+		valid_coins(aux, x, y + 1) ||
+		valid_coins(aux, x - 1, y) ||
+		valid_coins(aux, x, y - 1))
 		return (1);
+	else
+		return (0);
 	aux->map[y][x] = '0';
 	return (0);
 }
@@ -89,19 +87,10 @@ int	valid_coins(t_aux *aux, int x, int y, int **visited)
 
 int	valid_path(t_aux *game, t_aux *aux)
 {
-	int **visited;
-	int i;
-
-	i = 0;
-	visited = malloc(sizeof(int *) * game->rows);
-	while (i < game->rows)
-	{
-		visited[i] = malloc(sizeof(int) * game->colums);
-		i++;
-	}
+	aux->visited = 0;
 	if (valid_path_helper(game, game->start_x, game->start_y))
 	{
-		if (valid_coins(aux, aux->start_x, aux->start_y, visited))
+		if (valid_coins(aux, aux->start_x, aux->start_y))
 			return (1);
 	}
 	return (0);
