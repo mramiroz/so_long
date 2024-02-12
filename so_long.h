@@ -136,7 +136,7 @@ typedef struct s_game
 void	valid_map(t_game *game, const char *file);
 void	ft_error(char *str);
 void	ft_error_map(char *str, char **map);
-void	init_game(t_game *game, t_aux *aux, char **argv);
+void	init_game(t_game *game, t_aux *aux, t_aux *aux2, char **argv);
 int		key_hook(int key, void *param);
 t_img	create_img(t_win win, int w, int h);
 int		len_double(char **str);
@@ -150,7 +150,7 @@ int		set_player(t_game *game, int i, int j);
 int		set_exit(t_game *game, int i, int j);
 int		search_path(t_game game);
 void	free_map_char(char **map);
-int		valid_path(t_aux *game);
+int		valid_path(t_aux *game, t_aux *aux);
 void	copy_game(t_game *game, t_aux *aux);
 
 #endif

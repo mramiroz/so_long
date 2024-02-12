@@ -96,11 +96,12 @@ void	draw_player(t_game *game)
 		(game->player.y * cell_size));
 }
 
-void	init_game(t_game *game, t_aux *aux, char **argv)
+void	init_game(t_game *game, t_aux *aux, t_aux *aux2, char **argv)
 {
 	valid_map(game, argv[1]);
 	copy_game(game, aux);
-	if (!valid_path(aux))
+	copy_game(game, aux2);
+	if (!valid_path(aux, aux2))
 		ft_error_map("Error path not found", game->map.map);
 	game->win.id = mlx_init();
 	game->win.width = (ft_strlen(game->map.map[0])) * 30;

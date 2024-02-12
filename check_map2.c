@@ -53,31 +53,56 @@ void	copy_game(t_game *game, t_aux *aux)
 
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
-	if (x == aux->end_x && y == aux->end_y
-		&& aux->get_colec == aux->collectibles)
-		return (1);
-	if (aux->map[y][x] == '1' || aux->map[y][x] == '2')
+	if (aux->map[y][x] == '1')
 		return (0);
+	if (aux->map[y][x] == 'E')
+		return (1);
+	aux->map[y][x] = '1';
+    return (valid_path_helper(aux, x + 1, y) ||
+			valid_path_helper(aux, x - 1, y) ||	
+			valid_path_helper(aux, x, y + 1) ||
+			valid_path_helper(aux, x, y - 1));
+}
+
+int	valid_coins(t_aux *aux, int x, int y, int **visited)
+{
+	if (aux->map[y][x] == '1')
+		return (0);
+	if (aux->collectibles == aux->get_colec)
+		return (1);
 	if (aux->map[y][x] == 'C')
+	{
 		aux->get_colec++;
-	aux->map[y][x] = '2';
-	if (valid_path_helper(aux, x, y - 1)
-		|| valid_path_helper(aux, x, y + 1)
-		|| valid_path_helper(aux, x - 1, y)
-		|| valid_path_helper(aux, x + 1, y))
+		aux->map[y][x] = '0';
+	}
+	aux->map[y][x] = '1';
+
+	if (valid_coins(aux, x + 1, y, visited) ||
+		valid_coins(aux, x - 1, y, visited) ||
+		valid_coins(aux, x, y + 1, visited) ||
+		valid_coins(aux, x, y - 1, visited))
 		return (1);
 	aux->map[y][x] = '0';
 	return (0);
 }
 
-int	valid_path(t_aux *game)
-{
-	int	x;
-	int	y;
 
-	x = game->start_x;
-	y = game->start_y;
-	if (game->map[game->start_y][game->start_x] == '1')
-		return (0);
-	return (valid_path_helper(game, x, y));
+int	valid_path(t_aux *game, t_aux *aux)
+{
+	int **visited;
+	int i;
+
+	i = 0;
+	visited = malloc(sizeof(int *) * game->rows);
+	while (i < game->rows)
+	{
+		visited[i] = malloc(sizeof(int) * game->colums);
+		i++;
+	}
+	if (valid_path_helper(game, game->start_x, game->start_y))
+	{
+		if (valid_coins(aux, aux->start_x, aux->start_y, visited))
+			return (1);
+	}
+	return (0);
 }
