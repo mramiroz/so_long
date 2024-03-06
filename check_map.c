@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/24 08:18:35 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/06 08:40:26 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	is_ber(const char *file)
 		ft_error("It isn't a .ber file");
 }
 
-void	is_square(char **lines, int len)
+void	is_rectangle(char **lines, int len)
 {
 	int	i;
 
@@ -105,7 +105,7 @@ void	valid_map(t_game *game, const char *file)
 	game->map.map = ft_split(line, '\n');
 	free(line);
 	len = ft_strlen(game->map.map[len_double(game->map.map) - 1]);
-	is_square(game->map.map, len);
+	is_rectangle(game->map.map, len);
 	game->map.rows = len_double(game->map.map);
 	game->map.columns = ft_strlen(game->map.map[0]) - 1;
 	game->map.collectibles = 0;

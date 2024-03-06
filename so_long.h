@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/11/16 16:23:14 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:57:35 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_aux
 	int		get_colec;
 	int		rows;
 	int		colums;
-	int		visited;
+	int		**visited;
 }	t_aux;
 
 typedef struct s_map
@@ -137,7 +137,7 @@ typedef struct s_game
 void	valid_map(t_game *game, const char *file);
 void	ft_error(char *str);
 void	ft_error_map(char *str, char **map);
-void	init_game(t_game *game, t_aux *aux, t_aux *aux2, char **argv);
+void	init_game(t_game *game, t_aux *aux, char **argv);
 int		key_hook(int key, void *param);
 t_img	create_img(t_win win, int w, int h);
 int		len_double(char **str);
@@ -151,7 +151,9 @@ int		set_player(t_game *game, int i, int j);
 int		set_exit(t_game *game, int i, int j);
 int		search_path(t_game game);
 void	free_map_char(char **map);
-int		valid_path(t_aux *game, t_aux *aux);
+int		valid_path(t_aux *aux);
 void	copy_game(t_game *game, t_aux *aux);
+int		min_visited(t_aux *aux, int x, int y);
+int		valid_path_helper(t_aux *aux, int x, int y);
 
 #endif

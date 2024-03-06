@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/02/08 11:19:26 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:07:51 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,49 +49,4 @@ void	copy_game(t_game *game, t_aux *aux)
 	aux->get_colec = 0;
 	aux->rows = game->map.rows;
 	aux->colums = game->map.columns;
-}
-
-int	valid_path_helper(t_aux *aux, int x, int y)
-{
-	if (aux->map[y][x] == '1')
-		return (0);
-	if (aux->map[y][x] == 'E')
-		return (1);
-	aux->map[y][x] = '1';
-    return (valid_path_helper(aux, x + 1, y) ||
-			valid_path_helper(aux, x - 1, y) ||	
-			valid_path_helper(aux, x, y + 1) ||
-			valid_path_helper(aux, x, y - 1));
-}
-
-int	valid_coins(t_aux *aux, int x, int y)
-{
-	if (aux->map[y][x] == '1' || aux->visited > 100)
-		return (0);
-	if (aux->collectibles == aux->get_colec)
-		return (1);
-	if (aux->map[y][x] == 'C')
-		aux->get_colec++;
-	aux->map[y][x] = '1';
-	if (valid_coins(aux, x + 1, y) ||
-		valid_coins(aux, x, y + 1) ||
-		valid_coins(aux, x - 1, y) ||
-		valid_coins(aux, x, y - 1))
-		return (1);
-	else
-		return (0);
-	aux->map[y][x] = '0';
-	return (0);
-}
-
-
-int	valid_path(t_aux *game, t_aux *aux)
-{
-	aux->visited = 0;
-	if (valid_path_helper(game, game->start_x, game->start_y))
-	{
-		if (valid_coins(aux, aux->start_x, aux->start_y))
-			return (1);
-	}
-	return (0);
 }

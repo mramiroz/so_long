@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/02/02 11:13:23 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:14:29 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,11 @@ void	draw_player(t_game *game)
 		(game->player.y * cell_size));
 }
 
-void	init_game(t_game *game, t_aux *aux, t_aux *aux2, char **argv)
+void	init_game(t_game *game, t_aux *aux, char **argv)
 {
 	valid_map(game, argv[1]);
 	copy_game(game, aux);
-	copy_game(game, aux2);
-	if (!valid_path(aux, aux2))
+	if (!valid_path(aux))
 		ft_error_map("Error path not found", game->map.map);
 	game->win.id = mlx_init();
 	game->win.width = (ft_strlen(game->map.map[0])) * 30;
