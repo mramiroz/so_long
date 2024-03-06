@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:07:26 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/06 12:24:24 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:16:52 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	min_visited(t_aux *aux, int x, int y)
 	int	min;
 	int	min_x;
 	int	min_y;
-	int	i;
 
-	i = 0;
 	min_x = 0;
 	min_y = 0;
 	min = INT_MAX;
@@ -47,34 +45,30 @@ int	min_visited(t_aux *aux, int x, int y)
 		min_x = x + 1;
 		min_y = y;
 	}
-	return (valid_path_helper(aux, min_x, min_y));
+	aux->visited[min_y][min_x]++;
+	if (min == INT_MAX)
+		return (0);
+	if (valid_path_helper(aux, min_x, min_y))
+		return (1);
+	return (0);
 }
 
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= aux->colums || y >= aux->rows || aux->visited[y][x] > 3)
-        return (0);
-	if (aux->map[y][x] == '1')
+	if (x < 0 || y < 0 || x >= aux->colums || y >= aux->rows)
 		return (0);
 	if (aux->map[y][x] == 'E' && aux->get_colec == aux->collectibles)
 		return (1);
 	if (aux->map[y][x] == 'E' && aux->get_colec != aux->collectibles)
 		return (0);
-	if (aux->map[y][x] == '0' || aux->map[y][x] == 'C' || aux->map[y][x] == 'P')
-	{
-		if (aux->map[y][x] == 'C')
-		{
-			aux->map[y][x] = '0';
-			aux->get_colec++;
-		}
-        if (aux->map[y][x] == 'P')
-            aux->map[y][x] = '0';
-		aux->visited[y][x]++;
-	}
-	// printf("x: %d, y: %d\n", x, y);
-	printf("aux->visited[y][x]: %d\n", aux->visited[y][x]);
-	// printf("aux->map[y][x]: %c\n", aux->map[y][x]);
-	return (min_visited(aux, x, y));
+	if (aux->map[y][x] == '1')
+		return (0);
+	if (aux->map[y][x] == 'C')
+		aux->get_colec++;
+	aux->map[y][x] = '0';
+	if (min_visited(aux, x, y))
+		return (1);
+	return (0);
 }
 
 int	valid_path(t_aux *aux)
