@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/06 10:07:51 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/07 09:23:49 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	copy_game(t_game *game, t_aux *aux)
 	aux->get_colec = 0;
 	aux->rows = game->map.rows;
 	aux->colums = game->map.columns;
+	aux->get_exit = 0;
 }

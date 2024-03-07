@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/06 10:57:35 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/07 09:23:31 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_aux
 	int		get_colec;
 	int		rows;
 	int		colums;
+	int 	get_exit;
 	int		**visited;
 }	t_aux;
 
