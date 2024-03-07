@@ -6,21 +6,17 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:07:26 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/07 09:28:02 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/07 09:51:28 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-
-int	valid_path_helper(t_aux *aux, int x, int y)
+int valid_position(t_aux *aux, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= aux->colums || y >= aux->rows)
 		return (0);
 	if (aux->map[y][x] == '1')
-		return (0);
-	if (aux->visited[y][x] == 1)
 		return (0);
 	if (aux->map[y][x] == 'E' && aux->collectibles == aux->get_colec)
 		return (1);
@@ -34,19 +30,19 @@ int	valid_path_helper(t_aux *aux, int x, int y)
 		aux->get_colec++;
 		if (aux->get_exit == 1 && aux->collectibles == aux->get_colec)
 			return (1);
+		aux->map[y][x] = '0';
 	}
-	if ((aux->map[y][x] == '0' || aux->map[y][x] == 'P') && aux->visited[y][x] == 0)
-	{
-		aux->visited[y][x] = 1;
-		printf("x: %d, y: %d\n", x, y);
-		if (valid_path_helper(aux, x, y - 1) ||
-			valid_path_helper(aux, x, y + 1) ||
-			valid_path_helper(aux, x - 1, y) ||
-			valid_path_helper(aux, x + 1, y))
-		{
-			return (1);
-		}
-	}
+	return (1);
+}
+
+
+int	valid_path_helper(t_aux *aux, int x, int y)
+{
+	if (valid_position(aux, x, y + 1) 
+		|| valid_position(aux, x, y - 1)
+		|| valid_position(aux, x + 1, y)
+		|| valid_position(aux, x - 1, y))
+		return (1);
 	return (0);
 }
 
