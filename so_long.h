@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/19 20:30:54 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:38:23 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_aux
 	int		rows;
 	int		colums;
 	int 	get_exit;
-	int		**visited;
+	char	**visited;
 }	t_aux;
 
 typedef struct s_map
@@ -156,5 +156,6 @@ int		valid_path(t_aux *aux);
 void	copy_game(t_game *game, t_aux *aux);
 int		min_visited(t_aux *aux, int x, int y);
 int		valid_path_helper(t_aux *aux, int x, int y);
+void	free_int(t_aux *aux);
 
 #endif

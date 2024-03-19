@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:07:26 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/19 20:37:50 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:39:31 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int	compare_visited(t_aux *aux)
 }
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
-	if (aux->map[y][x] == '1' || aux->visited[y][x] == 1)
+	if (x < 0 || y < 0 || x >= aux->colums || y >= aux->rows)
+		return (0);
+	if (aux->map[y][x] == '1' || aux->visited[y][x] == '1')
 		return (0);
 	printf("Colec: %d\n", aux->collectibles);
 	printf("Get_colec: %d\n", aux->get_colec);
@@ -65,7 +67,7 @@ int	valid_path_helper(t_aux *aux, int x, int y)
 		if (aux->collectibles == aux->get_colec && aux->get_exit == 1)
 			return (1);
 	}
-	aux->visited[y][x]++;
+	aux->visited[y][x] = '1';
 	if (valid_path_helper(aux, x + 1, y) || valid_path_helper(aux, x - 1, y)
 		|| valid_path_helper(aux, x, y + 1) || valid_path_helper(aux, x, y - 1))
 		return (1);
@@ -78,18 +80,18 @@ int	valid_path(t_aux *aux)
 	int	y;
 
 	y = 0;
-	aux->visited = malloc(sizeof(int) * aux->rows);
+	aux->visited = malloc(sizeof(char) * aux->rows);
 	if (!aux->visited)
 		ft_error("Allocate failure");
 	while (y < aux->rows)
 	{
-		aux->visited[y] = malloc(sizeof(int) * aux->colums);
+		aux->visited[y] = malloc(sizeof(char) * aux->colums);
 		if (!aux->visited[y])
 			ft_error("Allocate failure");
 		x = 0;
 		while (x < aux->colums)
 		{
-			aux->visited[y][x] = 0;
+			aux->visited[y][x] = '0';
 			x++;
 		}
 		y++;
