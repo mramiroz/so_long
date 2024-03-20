@@ -6,30 +6,12 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:07:26 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/20 08:53:05 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/03/20 08:58:50 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	compare_visited(char **map, t_aux *aux)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while (y < aux->rows)
-	{
-		x = 0;
-		while (x <= aux->colums)
-		{
-			printf("%c", map[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-}
 int	valid_path_helper(t_aux *aux, int x, int y)
 {
 	if (aux->map[y][x] == '1')
