@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 12:57:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/10/25 13:24:10 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:47:57 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	xpm_image(t_img *img, t_game *game)
 			img->path, &img->width,
 			&img->height);
 	if (!img->img)
-		ft_error("Error\nImage not found\n");
+		ft_error_map("Error\nImage not found\n", game->map.map);
 }
 
 void	to_xpm(t_game *game)

@@ -5,13 +5,19 @@ LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_split.c libft/ft_calloc.c 
 OBJ = $(SRC:.c=.o)
 OBJ += $(LIBFT:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
-LDFLAGS = -lmlx -lXext -lX11 -lm -lz
+CFLAGS = -Wall -Wextra -Werror
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Linux)
+	LDFLAGS = -lmlx -lXext -lX11 -lm -lz
+endif
+ifeq ($(UNAME_S), Darwin)
+	LDFLAGS = -lmlx -framework OpenGL -framework AppKit
+endif
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:07:26 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/20 08:58:50 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:06:16 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	valid_path_helper(t_aux *aux, int x, int y)
 	aux->map[y][x] = '1';
 	if ((x + 1 < aux->colums && valid_path_helper(aux, x + 1, y))
 		|| (x - 1 >= 0 && valid_path_helper(aux, x - 1, y))
-		|| (y + 1 < aux->rows && valid_path_helper(aux, x, y + 1))	
+		|| (y + 1 < aux->rows && valid_path_helper(aux, x, y + 1))
 		|| (y - 1 >= 0 && valid_path_helper(aux, x, y - 1)))
 		return (1);
 	return (0);
@@ -44,4 +44,3 @@ int	valid_path(t_aux *aux)
 		return (1);
 	return (0);
 }
-

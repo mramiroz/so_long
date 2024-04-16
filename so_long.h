@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/20 08:46:43 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:25:26 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ enum e_keycode
 };
 # endif
 
+# define TILE_SIZE 30
+
 typedef struct s_aux
 {
 	int		start_x;
@@ -70,7 +72,7 @@ typedef struct s_aux
 	int		get_colec;
 	int		rows;
 	int		colums;
-	int 	get_exit;
+	int		get_exit;
 }	t_aux;
 
 typedef struct s_map
