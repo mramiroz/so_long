@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 06:48:13 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/04/16 10:21:54 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:47:02 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	counter(t_game *game)
 	mlx_put_image_to_window(game->win.id, game->win.win,
 		game->sprites.wall.img, 1 * TILE_SIZE, 0);
 	num = ft_itoa(game->player.moves);
+	write(1, "Pasos: ", 7);
+	write(1, num, ft_strlen(num));
+	write(1, "\n", 1);
 	mlx_string_put(game->win.id, game->win.win, 5, 5, 0x00FFFFFF,
 		num);
 	free(num);

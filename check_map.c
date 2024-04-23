@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:39:56 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/04/16 09:14:42 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:12:32 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,21 @@ void	is_ber(const char *file)
 void	is_rectangle(char **lines, int len)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < len_double(lines) - 1)
 	{
+		j = 0;
 		if (ft_strlen(lines[i]) != len)
 			ft_error_map("It isn't a rectangle", lines);
+		while (lines[i][j] != '\0')
+		{
+			if (lines[i][j] != '1' && (j == 0 || j == len - 1
+				|| i == 0 || i == len_double(lines) - 1))
+				ft_error_map("It isn't surrounded by walls", lines);
+			j++;
+		}
 		i++;
 	}
 }
@@ -70,21 +79,20 @@ void	scan_map(t_game *game, int len, int start, int end)
 		j = -1;
 		while (++j < len)
 		{
-			if (game->map.map[i][j] != '1' && (j == 0 || j == len - 1
-			|| i == 0 || i == len_double(game->map.map) - 1))
-				ft_error_map("It isn't surrounded by walls", game->map.map);
+			if (game->map.map[i][j] == '0' || game->map.map[i][j] == '1')
+				continue ;
 			else if (game->map.map[i][j] == 'P')
 				start += set_player(game, i, j);
 			else if (game->map.map[i][j] == 'E')
 				end += set_exit(game, i, j);
 			else if (game->map.map[i][j] == 'C')
 				game->map.collectibles++;
-			if (end > 1 || start > 1)
-				ft_error_map("There are to much start or end", game->map.map);
+			else
+				ft_error_map("Invalid character", game->map.map);
 		}
 	}
-	if (end == 0 || start == 0)
-		ft_error_map("There isn't start or end", game->map.map);
+	if ((end > 1 || start > 1) || (end == 0 && start == 0))
+		ft_error_map("Start or End error", game->map.map);
 }
 
 void	valid_map(t_game *game, const char *file)
@@ -103,6 +111,8 @@ void	valid_map(t_game *game, const char *file)
 		ft_error("Open file error");
 	line = create_map_line(fd);
 	game->map.map = ft_split(line, '\n');
+	if (len_double(game->map.map) != count_n(line) + 1)
+		ft_error_map("Invalid map", game->map.map);
 	free(line);
 	len = ft_strlen(game->map.map[len_double(game->map.map) - 1]);
 	is_rectangle(game->map.map, len);

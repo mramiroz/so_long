@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:27:25 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/04/16 09:25:26 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:04:11 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ int		valid_path(t_aux *aux);
 void	copy_game(t_game *game, t_aux *aux);
 int		min_visited(t_aux *aux, int x, int y);
 int		valid_path_helper(t_aux *aux, int x, int y);
+int		count_n(char *map);
 
 #endif

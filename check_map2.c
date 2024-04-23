@@ -6,7 +6,7 @@
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:00:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/03/20 08:25:13 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:07:19 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ int	set_player(t_game *game, int i, int j)
 	game->player.x = j;
 	game->player.y = i;
 	return (1);
+}
+
+int	count_n(char *map)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (map[i] != '\0')
+	{
+		if (map[i] == '\n')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 void	copy_game(t_game *game, t_aux *aux)
